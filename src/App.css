@@ -1,38 +1,490 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
 .App {
   text-align: center;
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2 {
+  color: #ff4081;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.theme-instruction {
+  font-size: 1.2em;
+  margin: 20px 0;
+  color: #ff4081;
 }
 
-.App-header {
-  background-color: #282c34;
+.theme-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.theme-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  text-decoration: none;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 5px;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.theme-button:hover {
+  background-color: #ff4081;
+  transform: scale(1.05);
+}
+
+.theme-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.theme-header {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.nav-button {
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.1rem; /* Increase font size */
+  cursor: pointer;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.back-button {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.next-button {
+  margin-left: 20px;
+  font-size: 20 px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 22px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.theme-image-container {
+  margin-top: 5px;
+  width: 90%;
+}
+
+.theme-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.theme-content-box {
+  width: 80%;
+  height: 160px;
+  overflow-y: auto;
+  position: relative;
+  padding: 20px;
+  padding-bottom: 60px; /* Add extra space at the bottom */
+  background-color: rgba(30, 30, 30, 0.7);
+  border-radius: 10px;
+  scrollbar-color: #ff4081 transparent;
+  scrollbar-width: thin;
+  margin-top: 10px;
+  scroll-behavior: smooth;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+}
+
+.theme-content-inner {
+  padding-bottom: 60px; /* Add extra space at the bottom of the inner content */
+}
+
+.theme-description {
+  font-size: 18px;
+  color: #ff4081;
+  margin-bottom: 15px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.theme-description.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.theme-description.hide {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.start-button {
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #ff679a;
+}
+
+.theme-detailed-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%; /* Ensure the content takes up at least the full height of the box */
+}
+
+.text-segment, .audio-item, .name-input-container {
+  font-size: 16px;
+  color: #ddd;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 80%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.text-segment.show, .audio-item.show, .name-input-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.audio-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.audio-item {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.audio-title {
+  font-size: 16px;
+  color: #ff4081;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.audio-player {
+  width: 100%;
+  max-width: 300px;
+}
+
+audio {
+  width: 100%;
+  background-color: #333;
+  border-radius: 5px;
+}
+
+/* Scrollbar styles for webkit browsers (Chrome, Safari, newer versions of Edge) */
+.theme-content-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.theme-content-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-content-box::-webkit-scrollbar-thumb {
+  background-color: #ff4081;
+  border-radius: 4px;
+}
+
+/* Scrollbar styles for Firefox */
+.theme-content-box {
+  scrollbar-color: #ff4081 transparent;
+  scrollbar-width: thin;
+}
+
+/* For Internet Explorer */
+.theme-content-box {
+  -ms-overflow-style: none;
+}
+
+.theme-content-box::-ms-scrollbar {
+  width: 8px;
+}
+
+.theme-content-box::-ms-scrollbar-track {
+  background: transparent;
+}
+
+.theme-content-box::-ms-scrollbar-thumb {
+  background-color: #ff4081;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .theme-page {
+    width: 90%;
+    height: 140px;
+    padding: 10px;
+  }
+
+  .theme-description {
+    font-size: 16px;
+  }
+
+  .text-segment {
+    font-size: 14px;
+  }
+
+  .audio-title {
+    font-size: 14px;
+  }
+
+  .theme-content-box {
+    width: 80%;
+    height: 140px;
+    padding-bottom: 60px;
+  }
+
+  .nav-button {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  /* Ensure pink scrollbar on mobile */
+  .theme-content-box::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .theme-content-box::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .theme-content-box::-webkit-scrollbar-thumb {
+    background-color: #ff4081;
+    border-radius: 4px;
+  }
+}
+
+/* Age Verification Styles */
+.age-verification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.age-verification h2 {
+  margin-bottom: 20px;
+}
+
+.age-verification button {
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.age-verification button:hover {
+  background-color: #ff679a;
+}
+
+.name-input-container input {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ff4081;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+}
+
+.name-input-container button {
+  background-color: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+.delayed-text-segment {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.delayed-text-segment.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.start-button, .continue-button {
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.start-button.loading, .continue-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.text-segment {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.text-segment.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.audio-item, .name-input-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.audio-item.show, .name-input-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.theme-footer {
+  Position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 30px;
+  text-align: center;
+  padding: px;
+  background-color: #3030305c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theme-footer span {
+  color: #ffffff;
+  margin-right: 10px;
+}
+.footer-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+}
+.theme-footer a {
+  color: #1DA1F2;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.theme-footer a:hover {
+  text-decoration: underline;
+}
+
+.bad-mommy-button {
+  background-color: #ff4081;
   color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.bad-mommy-button:hover {
+  background-color: #f50057;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.desperate-message {
+  color: #ff4081;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.yes-mommy-button {
+  background-color: #ff4081;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.yes-mommy-button:hover {
+  background-color: #ff4081;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.theme-content-box {
+  overflow-y: auto;
+  max-height: 70vh; /* Adjust this value as needed */
 }
