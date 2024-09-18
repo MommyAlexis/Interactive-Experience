@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -15,13 +18,17 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '20'
 
     - name: Install dependencies
-      run: npm ci
+      run: |
+        npm ci
+        npm list
 
     - name: Build
-      run: npm run build
+      run: |
+        npm run build
+        ls -R build
       env:
         CI: false
 
